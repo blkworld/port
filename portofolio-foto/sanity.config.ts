@@ -16,7 +16,7 @@ export default defineConfig({
       structure: (S) =>
         S.list()
           .title('Content')
-          .items([
+                    .items([
             S.listItem()
               .title('Homepage Photos')
               .id('homepage')
@@ -24,8 +24,11 @@ export default defineConfig({
                 S.document().schemaType('homepage').documentId('homepage')
               ),
             S.divider(),
+            S.documentTypeListItem('page').title('Pages'),
             S.documentTypeListItem('post').title('Blog Posts'),
             S.documentTypeListItem('category').title('Categories / Tags'),
+            S.divider(),
+            S.documentTypeListItem('gallery').title('Old Galleries (temporary)'),
           ]),
     }),
   ],

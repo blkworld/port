@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { siteConfig } from '@/lib/site'
+import type { PageLink } from '@/sanity/lib/queries'
 
-export default function Sidebar() {
+export default function Sidebar({ pages }: { pages: PageLink[] }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
@@ -66,15 +67,17 @@ export default function Sidebar() {
                 Blog
               </Link>
             </li>
-            <li>
-              <Link
-                href="/about"
-                onClick={close}
-                className={linkClass(pathname === '/about')}
-              >
-                About
-              </Link>
-            </li>
+            {pages.map((page) => (
+              <li key={page.slug}>
+                <Link
+                  href={`/${page.slug}`}
+                  onClick={close}
+                  className={linkClass(pathname === `/${page.slug}`)}
+                >
+                  {page.title}
+                </Link>
+              </li>
+            ))}
           </ul>
 
           <ul className="mt-10 space-y-1.5 text-[11px] uppercase tracking-[0.14em]">
