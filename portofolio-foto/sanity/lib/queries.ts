@@ -86,18 +86,3 @@ const cardFields = `
 export const postCardsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc){ ${cardFields} }`
 
 export const postCardsByCategoryQuery = `*[_type == "post" && $slug in categories[]->slug.current] | order(publishedAt desc){ ${cardFields} }`
-
-export interface PageLink {
-  title: string
-  slug: string
-}
-
-export interface PageContent extends PageLink {
-  body?: PortableTextValue
-}
-
-export const pageLinksQuery = `*[_type == "page" && defined(slug.current) && showInMenu != false] | order(menuOrder asc, title asc){ title, "slug": slug.current }`
-
-export const pageBySlugQuery = `*[_type == "page" && slug.current == $slug][0]{ title, "slug": slug.current, body }`
-
-export const pageSlugsQuery = `*[_type == "page" && defined(slug.current)]{ "slug": slug.current }`

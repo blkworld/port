@@ -4,10 +4,6 @@ import { Chivo } from 'next/font/google'
 import './globals.css'
 import SiteShell from '@/components/SiteShell'
 import { siteConfig } from '@/lib/site'
-import { client } from '@/sanity/lib/client'
-import { pageLinksQuery, type PageLink } from '@/sanity/lib/queries'
-
-export const revalidate = 60
 
 const chivo = Chivo({ subsets: ['latin'], display: 'swap' })
 
@@ -27,16 +23,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
-  const pages = await client.fetch<PageLink[]>(pageLinksQuery)
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
         suppressHydrationWarning
         className={`${chivo.className} text-neutral-900 antialiased`}
       >
-        <SiteShell pages={pages}>{children}</SiteShell>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )

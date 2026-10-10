@@ -4,15 +4,8 @@ import type { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import Sidebar from '@/components/Sidebar'
 import Footer from '@/components/Footer'
-import type { PageLink } from '@/sanity/lib/queries'
 
-export default function SiteShell({
-  pages,
-  children,
-}: {
-  pages: PageLink[]
-  children: ReactNode
-}) {
+export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname()
 
   // The admin panel uses the full screen, without the sidebar
@@ -23,7 +16,7 @@ export default function SiteShell({
 
   return (
     <div className={`min-h-screen ${background}`}>
-      <Sidebar pages={pages} />
+      <Sidebar />
       <div className="lg:pl-[280px]">
         <div className="min-h-[80vh]">{children}</div>
         <Footer />

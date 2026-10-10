@@ -16,15 +16,14 @@ export default defineConfig({
       structure: (S) =>
         S.list()
           .title('Content')
-                    .items([
+          .items([
             S.listItem()
               .title('Homepage Photos')
               .id('homepage')
               .child(
                 S.document().schemaType('homepage').documentId('homepage')
               ),
-              S.divider(),
-            S.documentTypeListItem('page').title('Pages'),
+            S.divider(),
             S.documentTypeListItem('post').title('Blog Posts'),
             S.documentTypeListItem('category').title('Categories / Tags'),
           ]),
