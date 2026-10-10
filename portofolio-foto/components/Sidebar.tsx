@@ -36,7 +36,7 @@ export default function Sidebar() {
 
   // One style for every menu item
   const itemClass = (active?: boolean) =>
-    `block text-[11px] uppercase tracking-[0.14em] transition-colors ${
+    `block w-fit text-[11px] uppercase tracking-[0.14em] transition-colors ${
       active ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-900'
     }`
 
@@ -93,7 +93,7 @@ export default function Sidebar() {
         <Link
           href="/"
           onClick={close}
-          className="hidden text-[17px] font-bold tracking-tight text-neutral-900 lg:block"
+          className="hidden text-[17px] font-bold tracking-tight text-neutral-900 lg:block lg:w-fit"
         >
           {siteConfig.name}
         </Link>
