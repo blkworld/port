@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #e8eaec;
+  color: #171717;
+}
+
+::selection {
+  background: #cfd3d7;
+}
