@@ -1,15 +1,11 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Inter } from 'next/font/google'
+import { Chivo } from 'next/font/google'
 import './globals.css'
 import SiteShell from '@/components/SiteShell'
 import { siteConfig } from '@/lib/site'
-import { client } from '@/sanity/lib/client'
-import { galleryLinksQuery, type GalleryLink } from '@/sanity/lib/queries'
 
-export const revalidate = 60
-
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const chivo = Chivo({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -27,16 +23,14 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
-  const galleries = await client.fetch<GalleryLink[]>(galleryLinksQuery)
-
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${inter.className} text-neutral-900 antialiased`}
+        className={`${chivo.className} text-neutral-900 antialiased`}
       >
-        <SiteShell galleries={galleries}>{children}</SiteShell>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )

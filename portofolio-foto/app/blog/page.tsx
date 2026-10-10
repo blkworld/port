@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import PostArticle from '@/components/PostArticle'
+import PostCard from '@/components/PostCard'
 import { client } from '@/sanity/lib/client'
-import { postsQuery, type Post } from '@/sanity/lib/queries'
+import { postCardsQuery, type Post } from '@/sanity/lib/queries'
 
 export const revalidate = 60
 
@@ -10,16 +10,20 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const posts = await client.fetch<Post[]>(postsQuery)
+  const posts = await client.fetch<Post[]>(postCardsQuery)
 
   return (
-    <main className="pt-14 sm:pt-20">
+    <main className="px-5 pb-20 pt-6 lg:px-14 lg:pt-[70px]">
       {posts.length === 0 ? (
-        <p className="mx-auto max-w-2xl px-5 py-32 text-center text-neutral-500 sm:px-8">
+        <p className="text-neutral-500">
           No posts yet. Open <strong>/admin</strong> to write your first post.
         </p>
       ) : (
-        posts.map((post) => <PostArticle key={post._id} post={post} />)
+        <div className="grid gap-x-10 gap-y-20 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          {posts.map((post) => (
+            <PostCard key={post._id} post={post} />
+          ))}
+        </div>
       )}
     </main>
   )

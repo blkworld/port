@@ -3,6 +3,7 @@ import { getDimensions, urlFor, type SanityPhoto } from '@/sanity/lib/image'
 import type { PortableTextValue } from '@/sanity/lib/queries'
 
 const WIDTHS = [800, 1200, 1600, 2400]
+const wrap = 'mx-auto max-w-[1300px] px-5 lg:px-14'
 
 function Photo({ value }: { value: SanityPhoto }) {
   const ref = value?.asset?._ref
@@ -16,12 +17,11 @@ function Photo({ value }: { value: SanityPhoto }) {
   const srcSet = WIDTHS.map((w) => `${build(w)} ${w}w`).join(', ')
 
   return (
-    <figure className="mx-auto my-10 max-w-5xl sm:px-8">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+    <figure className={`${wrap} my-10`}>
       <img
         src={build(1600)}
         srcSet={srcSet}
-        sizes="(min-width: 1024px) 960px, 100vw"
+        sizes="(min-width: 1536px) 1300px, 100vw"
         width={width}
         height={height}
         alt={value.alt || ''}
@@ -30,7 +30,7 @@ function Photo({ value }: { value: SanityPhoto }) {
         className="h-auto w-full"
       />
       {value.caption && (
-        <figcaption className="mt-3 px-5 text-center text-sm text-neutral-500 sm:px-0">
+        <figcaption className="mt-3 text-center text-sm text-neutral-500">
           {value.caption}
         </figcaption>
       )}
@@ -41,34 +41,38 @@ function Photo({ value }: { value: SanityPhoto }) {
 const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mx-auto my-6 max-w-2xl px-5 text-[17px] leading-8 text-neutral-700 sm:px-8">
+      <p className={`${wrap} my-6 text-[16px] leading-[1.85] text-neutral-800`}>
         {children}
       </p>
     ),
     h2: ({ children }) => (
-      <h2 className="mx-auto mb-4 mt-14 max-w-2xl px-5 text-2xl font-medium tracking-tight sm:px-8">
+      <h2 className={`${wrap} mb-4 mt-14 text-2xl font-medium tracking-tight`}>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mx-auto mb-3 mt-10 max-w-2xl px-5 text-xl font-medium sm:px-8">
-        {children}
-      </h3>
+      <h3 className={`${wrap} mb-3 mt-10 text-xl font-medium`}>{children}</h3>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mx-auto my-8 max-w-2xl px-5 text-lg italic leading-8 text-neutral-600 sm:px-8">
+      <blockquote
+        className={`${wrap} my-8 text-lg italic leading-8 text-neutral-600`}
+      >
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="mx-auto my-6 max-w-2xl list-disc pl-10 pr-5 leading-8 text-neutral-700 sm:pl-14 sm:pr-8">
+      <ul
+        className={`${wrap} my-6 list-disc pl-10 leading-8 text-neutral-800 lg:pl-20`}
+      >
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="mx-auto my-6 max-w-2xl list-decimal pl-10 pr-5 leading-8 text-neutral-700 sm:pl-14 sm:pr-8">
+      <ol
+        className={`${wrap} my-6 list-decimal pl-10 leading-8 text-neutral-800 lg:pl-20`}
+      >
         {children}
       </ol>
     ),
@@ -88,7 +92,7 @@ const components: PortableTextComponents = {
   types: {
     image: ({ value }: { value: SanityPhoto }) => <Photo value={value} />,
     gallery: ({ value }: { value: { images?: SanityPhoto[] } }) => (
-      <div className="my-10">
+      <div>
         {(value.images ?? []).map((img, index) => (
           <Photo key={img._key ?? index} value={img} />
         ))}

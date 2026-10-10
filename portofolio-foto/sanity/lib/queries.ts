@@ -68,17 +68,21 @@ export const olderPostQuery = `*[_type == "post" && publishedAt < $date] | order
 
 export const newerPostQuery = `*[_type == "post" && publishedAt > $date] | order(publishedAt asc)[0]{ title, "slug": slug.current }`
 
-export interface GalleryLink {
-  title: string
-  slug: string
-}
-
-export interface Gallery extends GalleryLink {
+export interface Homepage {
   images?: SanityPhoto[]
 }
 
-export const galleryLinksQuery = `*[_type == "gallery" && defined(slug.current)] | order(order asc, title asc){ title, "slug": slug.current }`
+export const homepageQuery = `*[_type == "homepage"][0]{ images }`
 
-export const firstGalleryQuery = `*[_type == "gallery" && defined(slug.current)] | order(order asc, title asc)[0]{ title, "slug": slug.current, images }`
+const cardFields = `
+  _id,
+  title,
+  "slug": slug.current,
+  publishedAt,
+  mainImage,
+  "categories": categories[]->{ title, "slug": slug.current }
+`
 
-export const galleryBySlugQuery = `*[_type == "gallery" && slug.current == $slug][0]{ title, "slug": slug.current, images }`
+export const postCardsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc){ ${cardFields} }`
+
+export const postCardsByCategoryQuery = `*[_type == "post" && $slug in categories[]->slug.current] | order(publishedAt desc){ ${cardFields} }`

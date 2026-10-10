@@ -62,15 +62,15 @@ export default async function PostPage({ params }: Props) {
   ])
 
   return (
-    <main className="pt-14 sm:pt-20">
-      <PostArticle post={post} asLink={false} />
+    <main className="pt-6 lg:pt-[70px]">
+      <PostArticle post={post} />
 
-      <nav className="mx-auto mb-24 grid max-w-2xl grid-cols-2 gap-6 border-t border-neutral-100 px-5 pt-8 text-sm sm:px-8">
-        <div>
+      <nav className="mx-auto mb-24 grid max-w-[1300px] grid-cols-2 gap-6 px-5 text-sm lg:px-14">
+        <div className="border-t border-neutral-200 pt-8">
           {older && (
             <Link href={`/post/${older.slug}`} className="group block">
-              <span className="block text-xs uppercase tracking-widest text-neutral-400">
-                ← Lebih lama
+              <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-400">
+                ← Older
               </span>
               <span className="mt-1 block group-hover:opacity-60">
                 {older.title}
@@ -78,11 +78,11 @@ export default async function PostPage({ params }: Props) {
             </Link>
           )}
         </div>
-        <div className="text-right">
+        <div className="border-t border-neutral-200 pt-8 text-right">
           {newer && (
             <Link href={`/post/${newer.slug}`} className="group block">
-              <span className="block text-xs uppercase tracking-widest text-neutral-400">
-                Lebih baru →
+              <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-neutral-400">
+                Newer →
               </span>
               <span className="mt-1 block group-hover:opacity-60">
                 {newer.title}

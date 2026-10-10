@@ -1,5 +1,5 @@
 import { categoryType } from './category'
-import { galleryType } from './gallery'
+import { homepageType } from './homepage'
 import { postType } from './post'
 
-export const schemaTypes = [galleryType, postType, categoryType]
+export const schemaTypes = [homepageType, postType, categoryType]

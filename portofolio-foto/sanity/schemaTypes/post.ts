@@ -53,8 +53,8 @@ export const postType = defineType({
     }),
     defineField({
       name: 'mainImage',
-      title: 'Cover photo (for link previews)',
-      description: 'Not shown in the feed. Only used for link previews and Google.',
+      title: 'Cover photo (thumbnail on the Blog page)',
+      description: 'Shown as the thumbnail on the Blog page and in link previews. Not shown inside the post.',
       type: 'image',
       options: { hotspot: true },
     }),
