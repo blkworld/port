@@ -6,7 +6,7 @@ import Sidebar from '@/components/Sidebar'
 import Footer from '@/components/Footer'
 
 // Satu warna latar untuk semua halaman. Ganti kodenya di sini kalau mau.
-const BACKGROUND = 'bg-[#fffff]'
+const BACKGROUND = 'bg-[#ffffff]'
 
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname()
