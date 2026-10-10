@@ -77,7 +77,7 @@ export default function Sidebar() {
             </li>
           </ul>
 
-          <ul className="mt-10 space-y-1.5 text-[11px] uppercase tracking-[0.14em]">
+          <ul className="mt-10 space-y-[7px] text-[15px]">
             <li>
               <Link
                 href="/archive"
