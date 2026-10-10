@@ -5,20 +5,63 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { siteConfig } from '@/lib/site'
 
+type NavLink = {
+  label: string
+  href: string
+  external?: boolean
+  active?: boolean
+}
+
 export default function Sidebar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
-  const linkClass = (active: boolean) =>
-    `block transition-colors ${
-      active ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-900'
-    }`
-
   const blogActive =
     pathname.startsWith('/blog') ||
     pathname.startsWith('/post') ||
     pathname.startsWith('/category')
+
+  const mainLinks: NavLink[] = [
+    { label: 'Photos', href: '/', active: pathname === '/' },
+    { label: 'Blog', href: '/blog', active: blogActive },
+    { label: 'About', href: '/about', active: pathname === '/about' },
+  ]
+
+  const secondaryLinks: NavLink[] = [
+    { label: 'Archive', href: '/archive', active: pathname === '/archive' },
+    { label: 'Instagram', href: siteConfig.instagram, external: true },
+    { label: 'Email', href: `mailto:${siteConfig.email}`, external: true },
+  ]
+
+  // One style for every menu item
+  const itemClass = (active?: boolean) =>
+    `block text-[11px] uppercase tracking-[0.14em] transition-colors ${
+      active ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-900'
+    }`
+
+  const renderLink = (link: NavLink) => (
+    <li key={link.label}>
+      {link.external ? (
+        <a
+          href={link.href}
+          target={link.href.startsWith('http') ? '_blank' : undefined}
+          rel="noopener noreferrer"
+          className={itemClass()}
+        >
+          {link.label}
+        </a>
+      ) : (
+        <Link
+          href={link.href}
+          onClick={close}
+          className={itemClass(link.active)}
+        >
+          {link.label}
+        </Link>
+      )}
+    </li>
+  )
 
   return (
     <>
@@ -35,12 +78,13 @@ export default function Sidebar() {
           type="button"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
-          className="text-xs uppercase tracking-widest text-neutral-600"
+          className="text-[11px] uppercase tracking-[0.14em] text-neutral-600"
         >
           {open ? 'Close' : 'Menu'}
         </button>
       </div>
 
+      {/* Sidebar (always visible on desktop, toggled on mobile) */}
       <aside
         className={`${
           open ? 'block' : 'hidden'
@@ -54,55 +98,9 @@ export default function Sidebar() {
           {siteConfig.name}
         </Link>
 
-        <nav className="lg:mt-14 lg:pl-[3px]">
-          <ul className="space-y-[7px] text-[15px]">
-            <li>
-              <Link href="/" onClick={close} className={linkClass(pathname === '/')}>
-                Photos
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog" onClick={close} className={linkClass(blogActive)}>
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                onClick={close}
-                className={linkClass(pathname === '/about')}
-              >
-                About
-              </Link>
-            </li>
-          </ul>
-
-          <ul className="mt-10 space-y-[7px] text-[15px]">
-            <li>
-              <Link
-                href="/archive"
-                onClick={close}
-                className={linkClass(pathname === '/archive')}
-              >
-                Archive
-              </Link>
-            </li>
-            <li>
-              <a
-                href={siteConfig.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClass(false)}
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${siteConfig.email}`} className={linkClass(false)}>
-                Email
-              </a>
-            </li>
-          </ul>
+        <nav className="lg:mt-14">
+          <ul className="space-y-2">{mainLinks.map(renderLink)}</ul>
+          <ul className="mt-10 space-y-2">{secondaryLinks.map(renderLink)}</ul>
         </nav>
       </aside>
     </>

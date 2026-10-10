@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: 'Photographer Name',
+  name: 'Uncovered Cines',
   tagline: 'Street & travel photography',
   description: 'A personal photo journal: stories, travels and small things I come across.',
   email: 'hello@example.com',
