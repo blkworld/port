@@ -46,6 +46,7 @@ export default function Sidebar() {
         pathname.startsWith('/blog') ||
         pathname.startsWith('/post') ||
         pathname.startsWith('/category'),
+    },
     { label: 'About', href: '/about', active: pathname === '/about' },
   ]
 
