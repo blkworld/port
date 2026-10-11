@@ -24,11 +24,11 @@ export default function AboutPage() {
 
       <div className="mt-8 space-y-6 text-[17px] leading-8 text-neutral-700">
         <p>
-    Hello, I'm D, I shoot photos and videos, mostly of places I visit and things that catch my eye.
+    My work focuses on photography and filmmaking, with a particular interest in landscapes, places, and the details that often go unnoticed.
   </p>
 
   <p>
-    Bluehour Cinema started when I got bored of my usual routine, spent too much time watching travel videos, and eventually bought a camera. Now I spend my free time exploring photography and filmmaking, learning as I go, and sharing what I make here.
+    Bluehour Cinema is a personal collection of my photographs, films, and occasional stories from my travels. It's a space to share my work and the moments I find worth capturing.
   </p>
       </div>
 
