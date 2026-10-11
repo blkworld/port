@@ -5,15 +5,11 @@ import type { PortableTextValue } from '@/sanity/lib/queries'
 const WIDTHS = [800, 1200, 1600, 2400]
 const wrap = 'mx-auto max-w-[1300px] px-5 lg:px-14'
 
-// Removes spaces and invisible characters
-const clean = (text: string) =>
-  text.replace(/[\s\u200B-\u200D\u2060\uFEFF]/g, '')
-
-// True when a text block has no visible text
+// True when a text block has no visible text (empty line, spaces, only line breaks)
 function isEmptyBlock(value: { children?: unknown }) {
   const children = (value.children ?? []) as { _type?: string; text?: string }[]
   return children.every(
-    (child) => child._type === 'span' && clean(child.text ?? '') === ''
+    (child) => child._type === 'span' && !(child.text ?? '').trim()
   )
 }
 
@@ -27,11 +23,9 @@ function Photo({ value }: { value: SanityPhoto }) {
     urlFor(value).width(w).fit('max').auto('format').quality(80).url()
 
   const srcSet = WIDTHS.map((w) => `${build(w)} ${w}w`).join(', ')
-  const caption = value.caption?.trim()
 
   return (
-    // Padding (not margin) so the space above and below is always equal
-    <figure className={`${wrap} py-6`}>
+    <figure className={`${wrap} my-10`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={build(1600)}
@@ -44,9 +38,9 @@ function Photo({ value }: { value: SanityPhoto }) {
         decoding="async"
         className="block h-auto w-full"
       />
-      {caption && (
+      {value.caption && (
         <figcaption className="mt-3 text-center text-sm text-neutral-500">
-          {caption}
+          {value.caption}
         </figcaption>
       )}
     </figure>
