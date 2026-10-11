@@ -2,8 +2,8 @@ export const siteConfig = {
   name: 'BLUEHOUR CINEMA',
   tagline: 'Street & travel photography',
   description: 'A personal photo journal: stories, travels and small things I come across.',
-  email: 'mail@example.com',
-  instagram: 'https://instagram.com/',
+  email: 'davaonworking@gmail.com',
+  instagram: 'https://instagram.com/hzkmedia',
   timeZone: 'Asia/Jakarta',
 }
 
