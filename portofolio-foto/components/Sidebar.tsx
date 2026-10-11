@@ -36,17 +36,10 @@ export default function Sidebar() {
     }
   }, [open])
 
-  // The order of this list is the order of the menu
+    // The order of this list is the order of the menu
   const links = [
     { label: 'Photos', href: '/', active: pathname === '/' },
-    {
-      label: 'Blog',
-      href: '/blog',
-      active:
-        pathname.startsWith('/blog') ||
-        pathname.startsWith('/post') ||
-        pathname.startsWith('/category'),
-    },
+    { label: 'Films', href: '/films', active: pathname.startsWith('/films') },
     { label: 'Gallery', href: '/gallery', active: pathname.startsWith('/gallery') },
     { label: 'About', href: '/about', active: pathname === '/about' },
   ]

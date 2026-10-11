@@ -18,21 +18,19 @@ export default defineConfig({
           .title('Content')
           .items([
             S.listItem()
-              .title('Homepage Photos')
+              .title('Photos (homepage)')
               .id('homepage')
               .child(
                 S.document().schemaType('homepage').documentId('homepage')
               ),
-            S.divider(),
-            S.documentTypeListItem('post').title('Blog Posts'),
+            S.documentTypeListItem('film').title('Films'),
             S.documentTypeListItem('photoGallery').title('Galleries'),
-            S.documentTypeListItem('category').title('Categories / Tags'),
           ]),
     }),
   ],
   schema: {
     types: schemaTypes,
-    // Homepage Photos hanya boleh ada satu, jadi disembunyikan dari tombol "New"
+    // Homepage Photos exists only once, so hide it from "New"
     templates: (templates) =>
       templates.filter(({ schemaType }) => schemaType !== 'homepage'),
   },
