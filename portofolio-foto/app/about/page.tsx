@@ -24,7 +24,7 @@ export default function AboutPage() {
 
       <div className="mt-8 space-y-6 text-[17px] leading-8 text-neutral-700">
         <p>
-    Hello, I'm Dava Hazkya, I shoot photos and videos, mostly of places I visit and things that catch my eye.
+    Hello, I'm D, I shoot photos and videos, mostly of places I visit and things that catch my eye.
   </p>
 
   <p>
