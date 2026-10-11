@@ -14,8 +14,9 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       <Sidebar />
-      <div className="lg:pl-[280px]">
-        <div className="min-h-[80vh]">{children}</div>
+      {/* flex-col + flex-1 pushes the footer to the bottom on short pages */}
+      <div className="flex min-h-screen flex-col lg:pl-[280px]">
+        <div className="flex-1">{children}</div>
         <Footer />
       </div>
     </div>
