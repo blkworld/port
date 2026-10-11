@@ -102,7 +102,7 @@ export default function Sidebar() {
             {links.map((link, i) => (
               <li
                 key={link.label}
-                className={`transition-all duration-500 ${
+                className={`will-change-transform transition-all duration-500 ${
                   open ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                 }`}
                 style={{ transitionDelay: open ? `${120 + i * 70}ms` : '0ms' }}
