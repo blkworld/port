@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
+import aboutPhoto from '@/public/about.jpg'
+const SHOW_PHOTO = true
 
 export const metadata: Metadata = {
   title: 'About',
@@ -9,6 +11,16 @@ export default function AboutPage() {
   return (
     <main className="max-w-2xl px-5 pb-32 pt-8 lg:pr-8 lg:pt-[70px]">
       <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">About</h1>
+      {SHOW_PHOTO && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={aboutPhoto.src}
+          width={aboutPhoto.width}
+          height={aboutPhoto.height}
+          alt={siteConfig.name}
+          className="mt-8 h-auto w-full max-w-md"
+        />
+      )}
 
       <div className="mt-8 space-y-6 text-[17px] leading-8 text-neutral-700">
         <p>
