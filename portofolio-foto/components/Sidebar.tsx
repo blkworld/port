@@ -36,18 +36,16 @@ export default function Sidebar() {
     }
   }, [open])
 
-   const links = [
+  const links = [
     { label: 'Photos', href: '/', active: pathname === '/' },
-    { label: 'Films', href: '/films', active: pathname.startsWith('/films') },
     { label: 'Gallery', href: '/gallery', active: pathname.startsWith('/gallery') },
-    {
-      label: 'Journal',
+    }
+      label: 'Blog',
       href: '/blog',
       active:
         pathname.startsWith('/blog') ||
         pathname.startsWith('/post') ||
         pathname.startsWith('/category'),
-    },
     { label: 'About', href: '/about', active: pathname === '/about' },
   ]
 
