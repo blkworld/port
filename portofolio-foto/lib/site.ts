@@ -23,3 +23,22 @@ export function formatMonthYear(iso: string) {
     timeZone: siteConfig.timeZone,
   }).format(new Date(iso))
 }
+
+// ---- Social icons (bottom of the sidebar) ----
+// Set to false to hide ALL icons at once.
+export const showSocialIcons = true
+
+// To hide a single icon, set its "show" to false.
+// Replace "username" with your real account before turning one on.
+export const socialLinks: {
+  id: string
+  label: string
+  href: string
+  show: boolean
+}[] = [
+  { id: 'instagram', label: 'Instagram', href: siteConfig.instagram, show: true },
+  { id: 'youtube', label: 'YouTube', href: 'https://youtube.com/@username', show: false },
+  { id: 'tiktok', label: 'TikTok', href: 'https://tiktok.com/@username', show: false },
+  { id: 'facebook', label: 'Facebook', href: 'https://facebook.com/username', show: false },
+  { id: 'email', label: 'Email', href: `mailto:${siteConfig.email}`, show: true },
+]

@@ -86,3 +86,26 @@ const cardFields = `
 export const postCardsQuery = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc){ ${cardFields} }`
 
 export const postCardsByCategoryQuery = `*[_type == "post" && $slug in categories[]->slug.current] | order(publishedAt desc){ ${cardFields} }`
+
+export interface GalleryCard {
+  _id: string
+  title: string
+  slug: string
+  cover?: SanityPhoto
+}
+
+export interface GalleryDetail {
+  title: string
+  images?: SanityPhoto[]
+}
+
+export const galleriesQuery = `*[_type == "photoGallery" && defined(slug.current)] | order(coalesce(order, 9999) asc, _createdAt desc){
+  _id,
+  title,
+  "slug": slug.current,
+  "cover": coalesce(cover, images[0])
+}`
+
+export const galleryBySlugQuery = `*[_type == "photoGallery" && slug.current == $slug][0]{ title, images }`
+
+export const gallerySlugsQuery = `*[_type == "photoGallery" && defined(slug.current)]{ "slug": slug.current }`

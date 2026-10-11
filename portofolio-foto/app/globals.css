@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  /* Satu-satunya tempat untuk mengganti warna latar semua halaman */
+  --site-bg: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #ffffff;
+  background: var(--site-bg);
   color: #171717;
 }
 

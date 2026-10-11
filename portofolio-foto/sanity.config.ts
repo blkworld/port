@@ -25,6 +25,7 @@ export default defineConfig({
               ),
             S.divider(),
             S.documentTypeListItem('post').title('Blog Posts'),
+            S.documentTypeListItem('photoGallery').title('Galleries'),
             S.documentTypeListItem('category').title('Categories / Tags'),
           ]),
     }),
