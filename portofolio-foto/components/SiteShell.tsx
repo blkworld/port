@@ -5,9 +5,6 @@ import { usePathname } from 'next/navigation'
 import Sidebar from '@/components/Sidebar'
 import Footer from '@/components/Footer'
 
-// Satu warna latar untuk semua halaman. Ganti kodenya di sini kalau mau.
-const BACKGROUND = 'bg-[#ffffff]'
-
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname()
 
@@ -15,7 +12,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   if (pathname.startsWith('/admin')) return <>{children}</>
 
   return (
-    <div className={`min-h-screen ${BACKGROUND}`}>
+    <div className="min-h-screen">
       <Sidebar />
       <div className="lg:pl-[280px]">
         <div className="min-h-[80vh]">{children}</div>
