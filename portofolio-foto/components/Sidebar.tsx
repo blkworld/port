@@ -39,7 +39,7 @@ export default function Sidebar() {
   const links = [
     { label: 'Photos', href: '/', active: pathname === '/' },
     { label: 'Gallery', href: '/gallery', active: pathname.startsWith('/gallery') },
-    }
+    {
       label: 'Blog',
       href: '/blog',
       active:
