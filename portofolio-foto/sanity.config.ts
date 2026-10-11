@@ -2,7 +2,6 @@
 
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
-import { media } from 'sanity-plugin-media'
 import { schemaTypes } from './sanity/schemaTypes'
 import { dataset, projectId } from './sanity/env'
 
@@ -30,7 +29,6 @@ export default defineConfig({
             S.documentTypeListItem('category').title('Categories / Tags'),
           ]),
     }),
-    media(),
   ],
   schema: {
     types: schemaTypes,

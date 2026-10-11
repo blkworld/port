@@ -10,7 +10,7 @@ export default function PostCard({ post }: { post: Post }) {
     <ThumbCard
       href={`/post/${post.slug}`}
       title={post.title}
-      image={post.mainImage}
+      image={post.thumb ?? post.mainImage}
       meta={meta}
     />
   )

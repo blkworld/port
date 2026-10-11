@@ -5,6 +5,14 @@ import type { PortableTextValue } from '@/sanity/lib/queries'
 const WIDTHS = [800, 1200, 1600, 2400]
 const wrap = 'mx-auto max-w-[1300px] px-5 lg:px-14'
 
+// True when a text block has no visible text (empty line, spaces, only line breaks)
+function isEmptyBlock(value: { children?: unknown }) {
+  const children = (value.children ?? []) as { _type?: string; text?: string }[]
+  return children.every(
+    (child) => child._type === 'span' && !(child.text ?? '').trim()
+  )
+}
+
 function Photo({ value }: { value: SanityPhoto }) {
   const ref = value?.asset?._ref
   if (!ref) return null
@@ -18,6 +26,7 @@ function Photo({ value }: { value: SanityPhoto }) {
 
   return (
     <figure className={`${wrap} my-10`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={build(1600)}
         srcSet={srcSet}
@@ -27,7 +36,7 @@ function Photo({ value }: { value: SanityPhoto }) {
         alt={value.alt || ''}
         loading="lazy"
         decoding="async"
-        className="h-auto w-full"
+        className="block h-auto w-full"
       />
       {value.caption && (
         <figcaption className="mt-3 text-center text-sm text-neutral-500">
@@ -40,11 +49,15 @@ function Photo({ value }: { value: SanityPhoto }) {
 
 const components: PortableTextComponents = {
   block: {
-    normal: ({ children }) => (
-      <p className={`${wrap} my-6 text-[16px] leading-[1.85] text-neutral-800`}>
-        {children}
-      </p>
-    ),
+    normal: ({ children, value }) => {
+      // Skip empty paragraphs so extra Enter presses do not add blank space
+      if (isEmptyBlock(value)) return null
+      return (
+        <p className={`${wrap} my-6 text-[16px] leading-[1.85] text-neutral-800`}>
+          {children}
+        </p>
+      )
+    },
     h2: ({ children }) => (
       <h2 className={`${wrap} mb-4 mt-14 text-2xl font-medium tracking-tight`}>
         {children}

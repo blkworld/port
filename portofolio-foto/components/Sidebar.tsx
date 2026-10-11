@@ -36,9 +36,9 @@ export default function Sidebar() {
     }
   }, [open])
 
+  // The order of this list is the order of the menu
   const links = [
     { label: 'Photos', href: '/', active: pathname === '/' },
-    { label: 'Gallery', href: '/gallery', active: pathname.startsWith('/gallery') },
     {
       label: 'Blog',
       href: '/blog',
@@ -47,6 +47,7 @@ export default function Sidebar() {
         pathname.startsWith('/post') ||
         pathname.startsWith('/category'),
     },
+    { label: 'Gallery', href: '/gallery', active: pathname.startsWith('/gallery') },
     { label: 'About', href: '/about', active: pathname === '/about' },
   ]
 
@@ -89,15 +90,15 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* ===== Mobile / tablet: full-screen menu ===== */}
+      {/* ===== Mobile / tablet: full-screen menu, centered ===== */}
       <div
         aria-hidden={!open}
-        className={`fixed inset-0 z-50 flex flex-col bg-[var(--site-bg)] px-5 pb-10 pt-28 transition-[opacity,visibility] duration-300 lg:hidden ${
+        className={`fixed inset-0 z-50 flex flex-col overflow-y-auto bg-[var(--site-bg)] px-5 pb-10 pt-28 transition-[opacity,visibility] duration-300 lg:hidden ${
           open ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
       >
-        <nav>
-          <ul className="space-y-7">
+        <nav className="flex flex-1 justify-center">
+          <ul className="flex flex-col items-center space-y-7 text-center">
             {links.map((link, i) => (
               <li
                 key={link.label}
@@ -109,7 +110,7 @@ export default function Sidebar() {
                 <Link
                   href={link.href}
                   onClick={close}
-                  className={`block w-fit text-[30px] uppercase leading-none tracking-[0.14em] transition-colors ${
+                  className={`block w-fit pl-[0.14em] text-[30px] uppercase leading-none tracking-[0.14em] transition-colors ${
                     link.active ? 'text-neutral-900' : 'text-neutral-500'
                   }`}
                 >
@@ -120,7 +121,7 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        <div className="mt-auto">
+        <div className="flex justify-center pt-10">
           <SocialIcons size="lg" />
         </div>
       </div>

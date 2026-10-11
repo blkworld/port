@@ -15,6 +15,7 @@ export interface Post {
   publishedAt: string
   excerpt?: string
   mainImage?: SanityPhoto
+  thumb?: SanityPhoto
   body?: PortableTextValue
   categories?: Category[]
 }
@@ -80,6 +81,11 @@ const cardFields = `
   "slug": slug.current,
   publishedAt,
   mainImage,
+  "thumb": coalesce(
+    select(defined(mainImage.asset) => mainImage),
+    body[_type == "image" && defined(asset)][0],
+    body[_type == "gallery"][0].images[defined(asset)][0]
+  ),
   "categories": categories[]->{ title, "slug": slug.current }
 `
 
