@@ -40,5 +40,5 @@ export const socialLinks: {
   { id: 'youtube', label: 'YouTube', href: 'https://youtube.com/@username', show: true },
   { id: 'tiktok', label: 'TikTok', href: 'https://tiktok.com/@username', show: false },
   { id: 'facebook', label: 'Facebook', href: 'https://facebook.com/username', show: false },
-  { id: 'email', label: 'Email', href: `mailto:${siteConfig.email}`, show: true },
+  { id: 'email', label: 'Email', href: `mailto:${siteConfig.email}`, show: false },
 ]
