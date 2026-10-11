@@ -103,7 +103,10 @@ export const galleriesQuery = `*[_type == "photoGallery" && defined(slug.current
   _id,
   title,
   "slug": slug.current,
-  "cover": coalesce(cover, images[0])
+  "cover": select(
+    defined(cover.asset) => cover,
+    images[defined(asset)][0]
+  )
 }`
 
 export const galleryBySlugQuery = `*[_type == "photoGallery" && slug.current == $slug][0]{ title, images }`
