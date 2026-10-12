@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: 'BLUEHOUR CINEMA',
-  tagline: 'Street & travel photography',
-  description: 'A personal photo journal: stories, travels and small things I come across.',
+  name: 'OFFFFFRAMES',
+  tagline: 'Photography & Film',
+  description: 'As It Was',
   email: 'davaonworking@gmail.com',
   instagram: 'https://instagram.com/hzkmedia',
   timeZone: 'Asia/Jakarta',
